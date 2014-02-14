@@ -3,10 +3,11 @@ layout: default
 title: Home
 ---
 
-blabla bla
+# Objectif du XKE
 
-## Objectif du XKE
+Ce hands-on a pour objectif de vous faire coder en utilisant les nouvelles fonctionnalitées de java 8
 
-blabla
+# Pre-requis
+Avoir le jdk 8 version ... installé
 
-## Pre-requis
+# Step 1 : Play With Date and Time
