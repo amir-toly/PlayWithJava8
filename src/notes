@@ -1,0 +1,5 @@
+presentation
+Présentation lambda simple, méthode static méthode d'instance constructeur
+sort => myList.sort()
+Functional interface (type + type primitif)
+
