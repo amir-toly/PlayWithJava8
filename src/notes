@@ -1,5 +1,7 @@
 presentation
-Présentation lambda simple, méthode static méthode d'instance constructeur
+Présentation lambda simple, méthode static méthode d'instance constructeur  , super:: pour le parent
+final implicite pour les variables à utilser dans les lambdas
 sort => myList.sort()
 Functional interface (type + type primitif)
+interface improvement : static default method, en cas de conflit appel explicite avec Person.super.getName()
 
