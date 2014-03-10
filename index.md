@@ -27,7 +27,7 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
 
  * Se connecter à la branche step2 :
      `git checkout step2`
- * Modifier les méthodes de la classe CollectionUtils : Utiliser les méthodes ajouter dans l'api collection sans passer par les streams
+ * Modifier les méthodes de la classe CollectionUtils : Utiliser les méthodes ajoutées dans l'api collection sans passer par les streams
 
  plus d'infos :
 
