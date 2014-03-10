@@ -36,7 +36,7 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
  * [http://download.java.net/jdk8/docs/api/java/lang/Iterable.html](http://download.java.net/jdk8/docs/api/java/lang/Iterable.html)
 
 -----------------
-### 3. Play With Collection Stream
+### 3. Play with Collection Stream
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step3 :
@@ -49,11 +49,12 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
   * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
 
   -----------------
-### 4. Play others Stream
+### 4. Play with others Stream
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step4 :
       `git checkout step4`
+ * Refactorer les class FileUtils.java et NumberUtils.java
 
   -----------------
 ### 5. Play With new concurent Api
