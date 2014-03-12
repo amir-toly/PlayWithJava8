@@ -19,29 +19,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.databene</groupId>
-                <artifactId>maven-benerator-plugin</artifactId>
-                <version>0.7.7</version>
-
-                <configuration>
-                    <xmlRoot>user</xmlRoot>
-                    <descriptor>src/main/resources/benerator.xml</descriptor>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-api</artifactId>
-                        <version>1.7.5</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-core</artifactId>
-                        <version>1.0.13</version>
-                    </dependency>
-
-                </dependencies>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
