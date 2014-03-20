@@ -14,7 +14,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 ### Pre-requis
 * Avoir le jdk 8 dernière version d'installé
 * Avoir git
-* clone le repository git clone ...
+* clone le repository git clone https://github.com/ibeauvais/PlayWithJava8.git
 ### 1. Date and Time
 **Refactorer le code java 7 en Java 8**
 
