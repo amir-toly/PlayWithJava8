@@ -1,17 +1,21 @@
 ---
 layout: default
-title: Play With Java 8
+title: Java 8 is Coming
 ---
 
 ### Objectif du XKE
 
 Ce hands-on a pour objectif de vous faire coder en utilisant les nouvelles fonctionnalitées de java 8.
 
+Le principe est simple : des fonctionnalités ont été codées en java 7 à vous des les refactorer pour utiliser les améliorations de java 8.
+
+Des commentaires avec des TODO sont la pour vous aiguiller.
+
 ### Pre-requis
-* Avoir le jdk 8 version ... installé
+* Avoir le jdk 8 dernière version d'installé
 * Avoir git
 * clone le repository git clone ...
-### 1. Play With Date and Time
+### 1. Date and Time
 **Refactorer le code java 7 en Java 8**
 
 * Se connecter à la branche step1 :
