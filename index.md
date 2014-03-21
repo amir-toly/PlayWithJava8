@@ -15,6 +15,8 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 * Avoir le jdk 8 dernière version d'installé
 * Avoir git
 * clone le repository git clone https://github.com/ibeauvais/PlayWithJava8.git
+* Si besoin régler votre IDE afin que le projet soit configuré avec la compatibilité java 8
+
 ### 1. Date and Time
 **Refactorer le code java 7 en Java 8**
 
@@ -25,13 +27,15 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 
 Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary.html](http://download.java.net/jdk8/docs/api/java/time/package-summary.html)
 
+Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step1-end' `
+
 -----------------
-### 2. Play With basic collection enhancement
+### 2. Basic collection enhancement
  **Refactorer le code java 7 en Java 8**  (Sans utiliser stream())
 
  * Se connecter à la branche step2 :
      `git checkout step2`
- * Modifier les méthodes de la classe CollectionUtils : Utiliser les méthodes ajoutées dans l'api collection sans passer par les streams
+ * Modifier les méthodes de la classe BasicCollectionOperations : Utiliser les méthodes ajoutées dans l'api collection sans passer par les streams
 
  plus d'infos :
 
@@ -39,6 +43,8 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
  * [http://download.java.net/jdk8/docs/api/java/util/Map.html](http://download.java.net/jdk8/docs/api/java/util/Map.html)
  * [http://download.java.net/jdk8/docs/api/java/lang/Iterable.html](http://download.java.net/jdk8/docs/api/java/lang/Iterable.html)
 
+
+Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step2-end' `
 -----------------
 ### 3. Play with Collection Stream
  **Refactorer le code java 7 en Java 8**
