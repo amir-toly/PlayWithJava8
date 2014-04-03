@@ -45,8 +45,9 @@ Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step1
 
 
 Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step2-end' `
+
 -----------------
-### 3. Play with Collection Stream
+### 3. Collection Stream
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step3 :
@@ -58,16 +59,25 @@ Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step2
   * [Optional](http://download.java.net/jdk8/docs/api/java/util/Optional.html)
   * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
 
+
+Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step3-end' `
+
   -----------------
-### 4. Play with others Stream
+### 4. Others Stream
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step4 :
       `git checkout step4`
  * Refactorer les class FileUtils.java et NumberUtils.java
 
+ plus d'infos :
+   * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
+   * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+   * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
+   * [Stream Api](http://download.java.net/jdk8/docs/api/java/util/stream/Stream.html)
+
   -----------------
-### 5. Play With new concurent Api
+### 5. Nashorn ??
 
  * Se connecter à la branche step5 :
       `git checkout step5`
