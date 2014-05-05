@@ -25,7 +25,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 * Modifier les méthodes de la classe DateUtils : Changer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
 
-Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary.html](http://download.java.net/jdk8/docs/api/java/time/package-summary.html)
+Plus d'infos : [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
 
 Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step1-end' `
 
@@ -39,9 +39,9 @@ Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step1
 
  plus d'infos :
 
- * [http://download.java.net/jdk8/docs/api/java/util/Collection.html](http://download.java.net/jdk8/docs/api/java/util/Collection.html)
- * [http://download.java.net/jdk8/docs/api/java/util/Map.html](http://download.java.net/jdk8/docs/api/java/util/Map.html)
- * [http://download.java.net/jdk8/docs/api/java/lang/Iterable.html](http://download.java.net/jdk8/docs/api/java/lang/Iterable.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
 
 
 Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step2-end' `
@@ -55,9 +55,9 @@ Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step2
  * Refactorer la class UserService.java
 
  plus d'infos :
-  * [Stream Api](http://download.java.net/jdk8/docs/api/java/util/stream/Stream.html)
-  * [Optional](http://download.java.net/jdk8/docs/api/java/util/Optional.html)
-  * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
+  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+  * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
 
 
 Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step3-end' `
@@ -73,8 +73,8 @@ Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step3
  plus d'infos :
    * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
    * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
-   * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
-   * [Stream Api](http://download.java.net/jdk8/docs/api/java/util/stream/Stream.html)
+   * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
+   * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
 
   -----------------
 ### 5. Nashorn ??
