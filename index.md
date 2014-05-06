@@ -20,8 +20,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 ### 1. Date and Time
 **Refactorer le code java 7 en Java 8**
 
-* Se connecter à la branche step1 :
-    `git checkout step1`
+* Vous devez être sur la branche step1
 * Modifier les méthodes de la classe DateUtils : Changer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
 
