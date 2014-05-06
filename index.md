@@ -77,7 +77,4 @@ Avant de passer à la suite sauvegarder votre solution : `git commit -a -m'step3
    * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
 
   -----------------
-### 5. Nashorn ??
 
- * Se connecter à la branche step5 :
-      `git checkout step5`
