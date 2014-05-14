@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Play with java 8</title>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+    <section data-id="4277ff343aae30fc171e75815943996b" class="">
+        <h1>
+        <span id="docs-internal-guid-6d4ba5a8-3dd6-58c4-b9f1-156a16b7022d">
+            <p dir="ltr" style="margin-top: 0pt; margin-bottom: 0pt;">
+                <span style="font-size: 64px; font-family: Georgia; color: rgb(255, 255, 255); background-color: transparent; font-style: normal; font-variant: normal; white-space: pre-wrap;">Java 8 is Coming</span>
+            </p>
+        </span>
+        </h1>
+        <h1 style="font-style: normal; font-variant: normal;" class="fragment" data-fragment-index="0">
+    <span id="docs-internal-guid-d7cda914-3dd8-31ca-10b3-3b6b78353355">
+        <span style="font-family: Georgia; font-size: 64px; font-style: normal; font-variant: normal; color: rgb(255, 255, 255); background-color: transparent; white-space: pre-wrap;">Quoi de neuf dans Java 8 ?</span>
+    </span>
+        </h1>
+    </section>
+
+<section class="stack" data-id="22c2d61a88fac6772a52899d33ab152b">
+    <section class="" data-id="c34098bb222be9e8e8e2d9fb720c5a46">
+        <h2>Nouvelle Api Date and Time</h2>
+
+        <div>
+            <br>
+            <br>
+        </div>
+        <div class="fragment" data-fragment-index="0">
+            <div>Gestions des heures :&nbsp;
+            </div>
+            <div>
+                <pre><code class="language-java"> LocalTime time = LocalTime.of(10, 22); // 10h22</code></pre>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>avec timeZone offset</div>
+            <div>
+                <pre><code class="language-java"> OffsetTime offsetTime = OffsetTime.of(time, ZoneOffset.of("+01:00")); // 10h22 +01:00</code>            </pre>
+            </div>
+        </div>
+        <div>
+            <br>
+        </div>
+    </section>
+
+    <section class="" data-id="870caa8ec829df3d9ef7da60f372e707">
+        <h2>Nouvelle Api Date and Time</h2>
+
+        <div>
+            <br>
+            <br>
+        </div>
+        <div>
+            <div>Gestions des dates sans heures:&nbsp;
+            </div>
+            <div>
+                <pre><code class="language-java">LocalDate date = LocalDate.of(2014, 2, 10); // 10/02/2014</code></pre>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>Gestion des dates avec heures</div>
+            <div>
+                <pre><code class="language-java">LocalDateTime dateWithTime = LocalDateTime.of(date, time); // 10/02/2014 10h22</code></pre>
+            </div>
+            <div>Gestion des dates /heures avec timezone</div>
+            <div>
+<pre><code class="language-java">// 10/02/2014 10h22Z
+OffsetDateTime dateTime = OffsetDateTime.of(dateWithTime, ZoneOffset.UTC);
+// 10/02/2014 10h22 +01:00[Europe/Paris]
+ZonedDateTime zonedDateTime = ZonedDateTime.of(dateWithTime, ZoneId.of("Europe/Paris"));
+</code>            </pre>
+            </div>
+        </div>
+        <div>
+            <br>
+        </div>
+
+
+    </section>
+    <section class="" data-id="2b5dbcf65408a10c889ee5a12baeee39">
+        <h2>Nouvelle Api Date and Time</h2>
+
+        <div>
+            <br>
+            <br>
+        </div>
+        <div>
+            <div>Gestions des dates partielles:&nbsp;
+            </div>
+            <div>
+                <pre><code class="language-java">MonthDay monthDay = MonthDay.from(date); // 10-02</code></pre>
+            </div>
+            <div>
+                <pre><code class="language-java">Year year = Year.from(date); // 2014</code></pre>
+            </div>
+            <div>
+                <pre><code class="language-java">YearMonth yearMonth = YearMonth.from(date); // 02/2014</code>            </pre>
+            </div>
+            <div>
+                <br>
+            </div>
+        </div>
+
+
+    </section>
+</section>
+<section data-id="d3a88e497f546ef422fd06b79a303b44" class="stack">
+<section data-id="6f72785ace38bfca05491849107101b0" class="">
+    <h2>Un peu de fonctionnel</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <h2 class="fragment" data-fragment-index="0">
+        <font style="font-size: 54px;" color="#ff9900">Lambda</font>
+    </h2>
+
+
+</section>
+<section data-id="eaef7a8ccae3f6a215969d60f235a89d" class="">
+    <h1>
+        <font style="font-size: 54px;">
+            <span style="font-style: normal; font-variant: normal;">Fonction :&nbsp;</span>&nbsp;</font>
+        <br>
+    </h1>
+
+    <div>
+        En Java 7 (avec Guava)
+    </div>
+    <div>
+
+<pre><code class="language-java">new Function&lt;Integer,Integer&gt;() {
+    @Override
+    public Integer apply (Integer number) {
+        return number + 1;
+    }
+};</code></pre>
+
+    </div>
+    <div>En Java 8 :&nbsp;
+
+        <pre><code class="language-java">number -&gt; number + 1</code></pre>
+
+    </div>
+    <div>Utilisation :&nbsp;
+
+<pre><code class="language-java">public Integer use(Integer value, Function&lt;Integer,Integer&gt; function) {
+    return function.apply(value);
+}
+use(10, number -&gt; number+1); // 11
+</code>                </pre>
+
+    </div>
+    <p>
+    </p>
+
+
+</section>
+<section data-id="307eb6c23bc9dcb5aa4837858eaef22e" class="">
+    <h1>
+        <font style="font-size: 42px;">
+            <span style="font-style: normal; font-variant: normal;">Predicate :&nbsp;</span>
+            <span>&nbsp;</span>
+        </font>
+        <br>
+    </h1>
+
+    <div>
+        <div style="font-size: 30.092592239379883px; font-style: normal; font-variant: normal;">En Java 7 (avec Guava)
+        </div>
+    </div>
+    <div>
+
+<pre><code class="language-java">new Predicate&lt;Integer&gt;() {
+    @Override
+    public boolean apply(Integer value) {
+        return value % 2 == 0;
+    }
+};
+</code></pre>
+
+    </div>
+    <div>En Java 8 :&nbsp;
+
+        <pre><code class="language-java">number -&gt; number % 2 == 0</code></pre>
+
+    </div>
+    <div>Utilisation
+<pre><code class="language-java">public boolean verify(Integer value, Predicate&lt;Integer&gt; predicate) {
+    return predicate.test(value);
+}
+verify(10, number -&gt; number % 2 == 0); // true
+</code>                </pre>
+    </div>
+    <p>
+    </p>
+
+
+</section>
+<section data-id="ac886bf191e3267ae8701ecad0ef6a0d" class="">
+    <h2>Interface fonctionnelle :</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>Une seul méthode abstraite</div>
+    <div>
+        <ul>
+            <li>Runnable<br>
+            </li>
+            <li>Callable</li>
+            <li>Comparator<br>
+            </li>
+            <li>FileFilter</li>
+            <li>...</li>
+        </ul>
+        <div style="text-align: left;">
+            <br>
+        </div>
+        <div style="text-align: center;">
+            <span>Vérification à la compilation avec &nbsp;</span>
+            <span class="language-java"
+                  style="background-color: rgb(63, 63, 63); color: rgb(220, 220, 220); font-family: monospace; text-align: left; white-space: pre-wrap;">@FunctionalInterface </span>
+            <br>
+        </div>
+        <div style="text-align: left;">
+            <br>
+        </div>
+    </div>
+    <div style="text-align: center;">Mais aussi ...</div>
+</section>
+<section data-id="8b4ee7c7eb924b6fa141e654b80c0a38" class="">
+    <h2>Nouvelles 'Interfaces fonctionnelles"&nbsp;</h2>
+
+    <div>Package&nbsp;<b>java.util.function</b>
+    </div>
+    <div>
+    </div>
+    <div class="fragment" data-fragment-index="0">
+<pre><code class="language-java">interface Function&lt;T, R&gt; {
+    R apply(T t);
+}</code></pre>
+    </div>
+    <div class="fragment" data-fragment-index="1">
+        <pre><code class="language-java"> (int value) -&gt; { return Integer.toString(value);}</code></pre>
+    </div>
+    <div class="fragment" data-fragment-index="2">
+        <pre><code class="language-java"> (value) -&gt; { Integer.toString(value);}</code></pre>
+    </div>
+    <div class="fragment" data-fragment-index="3">
+        <pre><code class="language-java">value -&gt; Integer.toString(value)</code>                    </pre>
+    </div>
+
+
+    <br>
+</section>
+<section data-id="827ffecc6b4e907d1d1d5cedd730b405" class="">
+    <h2>Nouvelles 'Interfaces fonctionnelles"&nbsp;</h2>
+
+    <div>Package&nbsp;<b>java.util.function</b>
+    </div>
+    <div>
+    </div>
+    <div data-fragment-index="0">
+<pre><code class="language-java">interface Consumer&lt;T&gt; {
+    void accept(T t);
+}
+
+value -&gt; System.out.println(value)
+</code></pre>
+    </div>
+    <div data-fragment-index="1">
+<pre><code class="language-java">interface Predicate&lt;T&gt; {
+    boolean test(T t);
+}
+
+numberValue -&gt; value % 2 == 0
+</code></pre>
+    </div>
+    <div data-fragment-index="2">
+<pre><code class="language-java">interface Supplier&lt;T&gt; {
+    T get();
+}
+
+() -&gt; BigDecimal.ONE
+</code>                </pre>
+    </div>
+
+
+    <br>
+
+</section>
+<section data-id="f792567068b32475f00137b74a9de3f1" class="">
+    <h2>Référence</h2>
+
+    <div>
+        <ul>
+            <li>instance method reference</li>
+        </ul>
+        <pre><code class="language-java">map(user -&gt; user.getName())</code></pre>
+        <pre><code class="language-java">map(User :: getName)</code></pre>
+        <div>
+            <ul>
+                <li>static method reference</li>
+            </ul>
+            <pre><code class="language-java">map(intValue -&gt; Integer.valueOf(intValue))</code></pre>
+            <pre><code class="language-java">map(Integer :: valueOf)</code></pre>
+        </div>
+        <ul>
+            <li>Constructor reference</li>
+        </ul>
+<pre><code class="language-java">map(value -&gt; new BigDecimal(value))
+</code></pre>
+        <pre><code class="language-java">map(BigDecimal :: new)</code>                </pre>
+    </div>
+
+
+    <br>
+
+
+</section>
+<section class="" data-id="9aa2353685639ab996163d4b41b2e2ae">
+    <h2>Référence</h2>
+
+    <div>Nouvelle méthode statique</div>
+    <div>
+<pre><code>Objects.isNull(Object obj);
+Objects.nonNull(Object obj);
+Integer.sum(int a, int b);
+Integer.max(int a, int b);
+Integer.min(int a, int b);</code></pre>
+    </div>
+
+    <div>
+<pre><code>List&lt;Integer&gt; values=new ArrayList&lt;&gt;();
+values.add(1); values.add(2); values.add(3);
+
+Optional&lt;Integer&gt; max = values.stream().
+                    filter(Objects::nonNull).
+                    reduce(Integer::max);
+</code>                </pre>
+    </div>
+
+
+    <br>
+
+
+</section>
+<section class="" data-id="105ed638c78637fc08846f6f92fb1aeb">
+    <h2>Utilisation des lambdas</h2>
+
+    <div>Mise à jour de l'API collection</div>
+    <div>
+        <br>
+    </div>
+    <div>
+<pre><code class="language-java">List&lt;String&gt; listOfString = ...
+listOfString.forEach(element -&gt; System.out.println(element));
+listOfString.removeIf(value -&gt; value.startsWith("a"));
+listOfString.sort(Comparator.comparing(String::Size));
+listOfString.replaceAll(value -&gt; "-" + value);
+</code></pre>
+    </div>
+    <div>
+<pre><code class="language-java">Map&lt;String,User&gt; userCache = ...
+userCache.forEach((key, value) -&gt; System.out.println(key + " -&gt;" + value));
+userCache.replaceAll((key, value) -&gt; userRepository.findByUserId(key));
+
+computeIfAbsent(K key, Function&lt;? super K,? extends V&gt; mappingFunction);
+computeIfPresent(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction);
+compute(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction);
+merge(K key, V value, BiFunction&lt;? super V,? super V,? extends V&gt; remappingFunction);
+getOrDefault(Object key, V defaultValue);
+</code>                </pre>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+
+
+</section>
+<section class="" data-id="5737e9927b643942cca3d4364185e8de">
+    <h2>Utilisation des lambdas</h2>
+
+    <div>Ajout des streams</div>
+    <div>
+        <br>
+    </div>
+    <div>
+<pre><code class="language-java">int sum = widgets.stream()
+    .filter(w -&gt; w.getColor() == RED)
+    .mapToInt(w -&gt; w.getWeight())
+    .sum();
+</code>                </pre>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div style="text-align: left; ">
+        <ul>
+            <ul>
+                <ul>
+                    <li class="fragment" data-fragment-index="0">
+                        <span style="color: rgb(220, 220, 220); font-family: monospace; font-size: 16.203702926635742px; font-style: normal; font-variant: normal; white-space: pre-wrap; background-color: rgb(63, 63, 63);">widgets.stream()</span>
+                        <font style="font-size: 18px;">: &nbsp;Transformation en stream</font>
+                    </li>
+                    <li class="fragment" data-fragment-index="1">
+                        <font style="font-size: 18px;">
+                            <span style="color: rgb(220, 220, 220); font-family: monospace; font-size: 16.203702926635742px; font-style: normal; font-variant: normal; white-space: pre-wrap; background-color: rgb(63, 63, 63);">filter(w -&gt; w.getColor() == RED)</span>
+                            : &nbsp;filtre avec un predicate</font>
+                    </li>
+                    <li class="fragment" data-fragment-index="2">
+                        <font style="font-size: 18px;">
+                            <span style="color: rgb(220, 220, 220); font-family: monospace; font-size: 16.203702926635742px; font-style: normal; font-variant: normal; white-space: pre-wrap; background-color: rgb(63, 63, 63);">mapToInt(w -&gt; w.getWeight())</span>
+                            : &nbsp;Transformation avec une fonction</font>
+                    </li>
+                    <li class="fragment" data-fragment-index="3">
+                        <font style="font-size: 18px;">
+                            <span style="color: rgb(220, 220, 220); font-family: monospace; font-size: 16.203702926635742px; font-style: normal; font-variant: normal; white-space: pre-wrap; background-color: rgb(63, 63, 63);">sum()</span>
+                            : Opération terminal&nbsp;</font>
+                    </li>
+                </ul>
+            </ul>
+        </ul>
+    </div>
+
+
+</section>
+<section class="" data-id="fe1360c7c23b6538610a8efad462b775">
+    <h2>Utilisation des lambdas</h2>
+
+    <div>Ajout des streams</div>
+    <div>
+        <br>
+    </div>
+    <div style="text-align: left; ">
+        <ul>
+            <ul>
+                <ul>
+                    <li>
+                        <b>Transformer en stream :</b>
+                    </li>
+                </ul>
+            </ul>
+        </ul>
+        <br>
+        <font style="font-size: 24px;">Collection, Array , File, Random, Range number, custom</font>
+    </div>
+    <div style="text-align: left; ">
+        <br>
+    </div>
+    <div style="text-align: left; ">
+        <ul>
+            <ul>
+                <ul>
+                    <li>
+                        <b>Traitement intermédiaire :</b>
+                    </li>
+                </ul>
+            </ul>
+        </ul>
+        <br>
+    </div>
+    <div style="text-align: left; ">
+        <font style="font-size: 24px;">map, flatmap, filter, distinct, &nbsp;limit, skip, sorted</font>
+    </div>
+    <br>
+
+    <div style="text-align: left; ">
+        <div>
+            <ul>
+                <ul>
+                    <ul>
+                        <li>
+                            <b>
+                                <font style="font-size: 32px;">Opération terminale :&nbsp;</font>
+                            </b>
+                        </li>
+                    </ul>
+                </ul>
+            </ul>
+            <font style="font-size: 72px;">
+<span>
+    <b>
+        <br>
+    </b>
+</span>
+            </font>
+        </div>
+        <div>
+            <font style="font-size: 24px;">allMatch, anyMatch, count, findAny, findFirst, &nbsp;forEach, max, min ....&nbsp;</font>
+        </div>
+        <div>
+            <font style="font-size: 24px;">Collect(Collector collector)</font>
+        </div>
+        <div>
+            <font style="font-size: 24px;">
+                <br>
+            </font>
+        </div>
+        <div>
+            <pre><code>.collect(Collectors.toList());</code>                </pre>
+        </div>
+    </div>
+
+
+</section>
+<section class="" data-id="839b2f4c1fadda548a3d81b1c04206ce">
+    <h2>Ajout du type Optional</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>
+<pre><code class="language-java">Optional&lt;User&gt; user = users.stream().findFirst();
+    String userAsString = user.map(User::toString).orElse(EMPTY_STRING);
+
+    ou
+
+    user.ifPresent(System.out::println);
+</code>                </pre>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+
+
+</section>
+</section>
+<section class="stack" data-id="e7ef3b19c1030d5f3cfaf6222711b8a2">
+    <section data-id="a95fc40e07ba38e89e8d514436f04a14" class="">
+        <h2>Amélioration du langage</h2>
+
+        <div class="fragment" data-fragment-index="0">
+            <h3>
+                <span style="font-size: 54px; color: rgb(255, 153, 0); font-weight: bold;">Interface :&nbsp; Default method</span>
+
+            </h3>
+            <br>
+
+            <div>
+<pre><code class="language-java">interface Iterable&lt;T&gt; {[...]
+default void forEach(Consumer&lt;? super T&gt; action) {
+        Objects.requireNonNull(action);
+        for (T t : this) {
+            action.accept(t);
+        }
+    }
+}</code>                </pre>
+            </div>
+        </div>
+
+        <br>
+    </section>
+    <section data-id="d32ef22b896566911a8cf9f4fb66b4b8" class="">
+        <h2>Amélioration du langage</h2>
+
+        <div>
+            <h3>
+                <span style="font-size: 54px; color: rgb(255, 153, 0); font-weight: bold;">Interface :&nbsp; méthodes&nbsp;Statiques&nbsp;</span>
+            </h3>
+            <br>
+<pre><code class="language-java">interface Comparator&lt;T&gt; {
+    public static &lt;T&gt; Comparator&lt;T&gt; nullsFirst(Comparator&lt;? super T&gt; comparator) {
+        return new Comparators.NullComparator&lt;&gt;(true, comparator);
+    }
+}</code>            </pre>
+        </div>
+
+        <br>
+    </section>
+    <section class="" data-id="15ab335ae0c15629601a677328831fd8">
+        <h2>Amélioration du langage</h2>
+
+        <div>
+            <br>
+        </div>
+        <h2>
+            <font color="#ff9900">
+                <span style="font-size: 54.39814758300781px;">Variable capture</span>
+            </font>
+        </h2>
+
+        <div>
+            <span>En Java 7</span>
+            <br>
+        </div>
+
+        <div>
+<pre><code class="language-java"> public Predicate&lt;String&gt; filterByName(final String name) {
+    return new Predicate&lt;String&gt;() {
+        @Override
+        public boolean apply(String input) {
+            return name.equals(input);
+        }
+    };
+ }></code></pre>
+        </div>
+        <div>
+            <span>En Java 8</span>&nbsp;<br>
+        </div>
+
+        <div>
+<pre><code class="language-java"> public Predicate&lt;String&gt; filterByName(String name) {
+    return input -&gt; name.equals(input);
+}</code>        </pre>
+        </div>
+
+
+        <br>
+    </section>
+    <section class="" data-id="c4de1723bbb97fa401314f19fb465e2f">
+        <h2>Amélioration du langage</h2>
+
+        <div>
+            <br>
+        </div>
+        <h2>
+            <font color="#ff9900">
+                <span style="font-size: 54.39814758300781px;">Type Inference</span>
+            </font>
+        </h2>
+
+        <div>
+            <font color="#ff9900">
+        <span style="font-size: 54.39814758300781px;">
+            <br>
+</span>
+            </font>
+        </div>
+        <div style="font-size: 30.092592239379883px; font-style: normal; font-variant: normal;">En Java 7</div>
+
+        <div>
+            <pre><code class="language-java">when(building.findByName("unknown name")).thenReturn(Collections.&lt;String&gt;emptyList());</code></pre>
+        </div>
+
+
+        <div class="fragment" data-fragment-index="0">
+            <div style="font-size: 30.092592239379883px; font-style: normal; font-variant: normal;">En Java 8</div>
+            <pre><code class="language-java">when(building.findByName("unknown name")).thenReturn(Collections.emptyList());</code>    </pre>
+        </div>
+
+
+        <br>
+    </section>
+</section>
+<section class="stack" data-id="73156293b7c27aa72775e362ea27263d">
+    <section class="" data-id="57d08d0b4975a1dac03df47b5536a401">
+        <h2>Concurrent API</h2>
+
+        <div class="fragment" data-fragment-index="0">
+            <h3>
+                <span style="font-size: 54px; color: rgb(255, 153, 0); font-weight: bold;">Traitement parallèle</span>
+            </h3>
+
+            <div style="text-align: left;">
+                <span>Stream</span>
+            </div>
+            <div>
+<pre><code class="language-java">double average = users.parallelStream()
+    .filter(p -&gt; p.getGender() == Person.Sex.MALE)
+    .mapToInt(Person::getAge)
+    .average()
+    .getAsDouble();
+</code></pre>
+            </div>
+            <div style="text-align: left;">
+                <span>Array</span>
+            </div>
+            <div>
+<pre><code class="language-java">Arrays.parallelSort(T[] a);
+    Arrays.parallelPrefix(T[] array, BinaryOperator&lt;T&gt; op);
+    Arrays.parallelSetAll(T[] array, IntFunction&lt;? extends T&gt; generator);</code>    </pre>
+            </div>
+        </div>
+        <br>
+
+    </section>
+    <section class="" data-id="1b9f81caddee08c6aa6f34c9f6f4b62e">
+        <h2>Concurrent API</h2>
+
+        <div>
+            <h3 style="text-align: center; ">
+<span style="text-align: left; font-size: 54.39814758300781px;">
+    <font color="#ff9900">variables Atomiques</font>
+</span>&nbsp;<br>
+            </h3>
+
+            <div>Example avec AtomicLong</div>
+            <div>
+<pre><code>AtomicLong value = new AtomicLong(1);
+
+value.updateAndGet(x -&gt; x * 2);
+value.accumulateAndGet(100, (x, y) -&gt; x &gt; y ? x : y);</code>    </pre>
+            </div>
+        </div>
+        <br>
+    </section>
+    <section class="" data-id="d03800a94a16b76674b15f3cc29d77a7">
+        <h2>Concurrent API</h2>
+
+        <div>
+            <h3 style="text-align: center; ">
+<span style="text-align: left; font-size: 54.39814758300781px;">
+    <font color="#ff9900">Nouvelles classes</font>
+</span>
+                <br>
+            </h3>
+
+            <div>LongAdder, DoubleAdder, LongAccumulator, DoubleAccumulator</div>
+            <div>
+
+            </div>
+        </div>
+        <br>
+
+        <div>
+            <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/ivanbeauvais/images/379716/longadderquad1.png">
+            <br>
+        </div>
+        <div style="text-align: left; ">
+            <font style="font-size: 18px;">Source :&nbsp;<a
+                    href="http://minddotout.wordpress.com/2013/05/11/java-8-concurrency-longadder/">http://minddotout.wordpress.com/2013/05/11/java-8-concurrency-longadder/</a>
+            </font>
+        </div>
+    </section>
+    <section class="" data-id="46d180c020c62457fd78562b2d4a535a">
+        <h2>Concurrent API</h2>
+
+        <div>
+            <h3 style="text-align: center; ">
+<span style="text-align: left; font-size: 54.39814758300781px;">
+    <font color="#ff9900">StampedLock</font>
+</span>&nbsp;<br>
+            </h3>
+
+            <div>Lock optimiste</div>
+            <div style="text-align: left; ">
+                <span>Exemple :</span>
+                <br>
+            </div>
+            <div>
+<pre><code class="language-java">private StampedLock lock = new StampedLock();
+
+public void write(String data) {
+    long stamp = = lock.writeLock();
+    //write data
+    lock.unlockWrite(stamp);
+}
+
+public String read() {
+    while (true) {
+        Long stamp = lock.tryOptimisticRead();
+        //read data
+        if (lock.validate(stamp)) {
+            return "read data";
+        }
+    lock.unlockRead(stamp);
+}</code></pre>
+            </div>
+        </div>
+
+
+    </section>
+    <section class="" data-id="b10b64094684469ea315aa38dfc2873b">
+        <h2>Concurrent API</h2>
+
+        <div>
+            <h3 style="text-align: center; ">
+<span style="text-align: left; font-size: 54.39814758300781px;">
+    <font color="#ff9900">ConcurrentHashMap</font>
+</span>&nbsp;<br>
+            </h3>
+
+            <div>
+                <ul>
+                    <li style="text-align: left;">
+                        <span style="text-align: center;">Nouvelle implémentation</span>
+                        <br>
+                    </li>
+                    <li style="text-align: left;">
+                        <span style="text-align: center;">34 nouvelles méthodes</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+<pre><code class="language-java">ConcurrentHashMap&lt;String, User&gt; cache = ...
+cache.search(100, (key, user) -&gt; user.getFirstname().equals("joe") ? user : null);
+cache.reduce(3, (key, user) -&gt; user.age(), Math::max);
+cache.forEach(10, (key, user) -&gt; System.out.println(key + "-&gt;" + user));
+</code></pre>
+            </div>
+        </div>
+
+
+    </section>
+    <section class="" data-id="031ad38149687d8de46a5d61387d50ab">
+        <h2>Concurrent API</h2>
+
+        <div>
+            <h3 style="text-align: center; ">
+<span style="text-align: left;">
+    <font color="#ff9900">
+        <span style="font-size: 54.39814758300781px;">CompletableFuture</span>&nbsp;</font>
+</span>
+            </h3>
+
+            <div>
+<pre><code class="language-java">CompletableFuture&lt;User&gt; task = CompletableFuture.supplyAsync(userRepository::retrieveUserInfo);
+</code></pre>
+<pre><code class="language-java">task.
+thenApplyAsync(user -&gt; authService.getAuthInfo(user)).
+thenAccept(logger::log);
+</code></pre>
+<pre><code class="language-java">CompletableFuture&lt;Auth&gt; authInfoTask = CompletableFuture.supplyAsync(authService::getAuthInfo);
+task.
+thenCombine(authInfoTask, (user, auth) -&gt; aggregateUserInfo(user, auth))
+.thenAccept(logger::log);
+</code></pre>
+            </div>
+        </div>
+
+
+    </section>
+</section>
+<section class="stack" data-id="587f66c510948b75639d2f089236cc6d">
+    <section class="" data-id="5954c895e7fbb369038dd0b112ba2292">
+        <h2>Améliorations diverses</h2>
+
+        <div class="fragment" data-fragment-index="0">
+            <h3>
+                <span style="font-size: 54px; color: rgb(255, 153, 0); font-weight: bold;">Chaîne de caractère</span>
+            </h3>
+
+            <div>
+<pre><code class="language-java">// join with var args
+String message = String.join("-", "Java", "is", "cool"); // "Java-is-cool"
+
+// join with collection
+List&lt;String&gt; strings = new LinkedList&lt;&gt;();
+strings.add("Java");strings.add("is");strings.add("cool");
+String message = String.join(" ", strings);&nbsp;// "Java is cool"
+
+// join with StringJoiner
+StringJoiner joiner = new StringJoiner(":", "[", "]");
+joiner.add("George").add("Sally").add("Fred");
+String desiredString = joiner.toString(); // [George:Sally:Fred]
+
+// join with stream
+List&lt;String&gt; strings = new LinkedList&lt;&gt;();
+strings.add("JAVA"); strings.add("IS"); strings.add("COOL");
+String value = strings.stream().
+map(String::toLowerCase).
+collect(Collectors.joining(" ", "[", "]")); // [java is cool]
+
+</code>    </pre>
+
+
+            </div>
+        </div>
+        <br>
+
+    </section>
+    <section class="" data-id="b8be55a616ec5e9074073ea63fc82901">
+        <h2>Améliorations diverses</h2>
+
+        <div>
+            <p>
+<span style="font-size: 24px; color: rgb(255, 153, 0); font-weight: bold;">Annotations :&nbsp; Repeating Annotations<br>
+</span>
+
+            </p>
+        </div>
+        <div>
+            <span>En Java 7</span>
+<pre><code class="language-java">@NamedQueries({
+    @NamedQuery(name="findById", query = "select u from User u where u.id = :id"),
+    @NamedQuery(name="findByName", query = "select u from User u where u.name like :name")
+})
+@Entity
+public class User {
+    ...
+}
+</code></pre>
+
+        </div>
+        <div>
+            <span>En Java 8</span>
+<pre><code class="language-java">@NamedQuery(name = "findById", query = "select u from User u where u.id = :id"),
+@NamedQuery(name = "findByName", query = "select u from User u where u.name like :name")
+@Entity
+public class User {
+    ...
+}
+</code></pre>
+<pre><code>@Repeatable(NamedQueries.class)
+public @interface NamedQuery{...}
+</code>    </pre>
+
+        </div>
+        <br>
+
+
+    </section>
+    <section class="" data-id="6e3553def6f0f6b5445acc96e73ec35a">
+        <h2>Améliorations diverses</h2>
+
+        <div>
+            <p>
+                <span style="font-size: 24px; color: rgb(255, 153, 0); font-weight: bold;">Annotations : &nbsp;nouveaux types d'annotations</span>
+            </p>
+        </div>
+        <div>
+<pre><code class="language-java">//generic type arguments:
+Map&lt;@NonNull String, @NonEmpty List&lt;@Readonly Document&gt;&gt; files;
+class Folder&lt;F extends @Existing File&gt; {}
+
+//constructor invocation results
+new @Interned MyObject()
+//Type casts:
+myString = (@NonNull String) myObject;
+
+// method and constructor references
+@Vernal Date::getDay
+List&lt;@English String&gt;::size
+Arrays::&lt;@NonNegative Integer&gt;sort
+
+//Constructors
+class Invocation {
+    @Immutable
+    Invocation() { ... }
+...
+}
+</code>    </pre>
+
+        </div>
+
+        <br>
+
+
+    </section>
+    <section class="" data-id="cc0b21030ce186eb93ae423808fd6735">
+        <h2>Améliorations diverses</h2>
+
+        <div>
+            <p>
+<span style="color: rgb(255, 153, 0); font-weight: bold;">
+<font style="font-size: 54px;">Nashorn</font>
+</span>
+            </p>
+        </div>
+
+
+        Utilisation en ligne de commande : jjs<br>
+<pre><code>$ ln -s $JAVA_HOME/bin/jjs jjs
+$ jjs
+jjs&gt; print('Hello World');
+hello world
+</code></pre>
+
+        Utilisation en java<br>
+<pre><code class="language-java">ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+engine.eval("print('Hello World');");
+</code>        </pre>
+
+
+        <br>
+
+        <div>Basé sur ECMAscript 5.1</div>
+    </section>
+    <section class="" data-id="5c99fc6cfc4a8f15d938997b664f906a">
+        <h2>Améliorations diverses</h2>
+
+        <div>
+            <p>
+<span style="color: rgb(255, 153, 0); font-weight: bold;">
+<font style="font-size: 54px;">Base 64 encoding</font>
+</span>
+            </p>
+        </div>
+        <br>
+<pre><code class="language-java">String encodedString =
+Base64.getEncoder().
+encodeToString("String to encode".getBytes("utf-8")); // U3RyaW5nIHRvIGVuY29kZQ==
+
+byte[] decodedString =
+Base64.getDecoder().
+decode(encodedString); //String to encode
+</code>    </pre>
+
+
+        <br>
+
+
+    </section>
+    <section class="" data-id="85a3ffaa35bdb0c84a24c47df7485048">
+        <h2>Conclusion</h2>
+    </section>
+</section>
+</div>
+
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 960,
+        height: 700,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
