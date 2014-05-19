@@ -7,7 +7,8 @@ title: Java 8 is Coming
 
 Cet atelier a pour objectif de vous faire coder en utilisant les nouvelles fonctionnalitées de Java 8.
 
-Le principe est simple : des fonctionnalités ont été codées en Java 7 à vous des les refactorer pour utiliser les améliorations de Java 8.
+Le principe est simple : des fonctionnalités ont été codées en Java 7, à vous des les refactorer pour utiliser les améliorations de Java 8.
+Les tests unitaires passent en java 7, ils doivent toujours passer en Java 8. Ils sont la pour vérifier l'iso fonctionnalité de l'implémentation.
 
 Des commentaires avec des TODO sont la pour vous aiguiller.
 
@@ -21,8 +22,9 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 **Refactorer le code Java 7 en Java 8**
 
 * Vous devez être sur la branche step1
-* Modifier les méthodes de la classe DateUtils : Changer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
+* Modifier les méthodes de la classe DateUtils : Remplacer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
+* Attention pour cette step il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
 
 Plus d'infos : 
 
