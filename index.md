@@ -37,7 +37,7 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 -----------------
 
 ### 2. Basic collection enhancement
- **Refactorer le code Java 7 en Java 8   \(Sans utiliser stream\(\)\) **
+ **Refactorer le code Java 7 en Java 8 **  (Sans utiliser stream())
 
  * Se connecter à la branche step2 :
      `git checkout step2`
