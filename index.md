@@ -37,7 +37,7 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 -----------------
 
 ### 2. Basic collection enhancement
- **Refactorer le code Java 7 en Java 8**  (Sans utiliser stream())
+ **Refactorer le code Java 7 en Java 8  (Sans utiliser stream()) **
 
  * Se connecter à la branche step2 :
      `git checkout step2`
@@ -53,6 +53,7 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step2-end' `
 
 -----------------
+
 ### 3. Collection Stream
  **Refactorer le code Java 7 en Java 8**
 
@@ -61,6 +62,7 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
  * Refactorer la class UserService.java
 
  plus d'infos :
+
   * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
   * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
   * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
@@ -68,7 +70,8 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 
 Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step3-end' `
 
-  -----------------
+-----------------
+
 ### 4. Others Stream
  **Refactorer le code Java 7 en Java 8**
 
@@ -77,6 +80,7 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
  * Refactorer les class FileUtils.java et NumberUtils.java
 
  plus d'infos :
+
    * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
    * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
    * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
