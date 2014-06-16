@@ -846,13 +846,15 @@ cache.forEach(10, (key, user) -&gt; System.out.println(key + "-&gt;" + user));
             </h3>
 
             <div>
-<pre><code class="language-java">CompletableFuture&lt;User&gt; task = CompletableFuture.supplyAsync(userRepository::retrieveUserInfo);
+<pre><code class="language-java">CompletableFuture&lt;User&gt; task =
+CompletableFuture.supplyAsync(userRepository::retrieveUserInfo);
 </code></pre>
 <pre><code class="language-java">task.
 thenApplyAsync(user -&gt; authService.getAuthInfo(user)).
 thenAccept(logger::log);
 </code></pre>
-<pre><code class="language-java">CompletableFuture&lt;Auth&gt; authInfoTask = CompletableFuture.supplyAsync(authService::getAuthInfo);
+<pre><code class="language-java">CompletableFuture&lt;Auth&gt; authInfoTask = 
+CompletableFuture.supplyAsync(authService::getAuthInfo);
 task.
 thenCombine(authInfoTask, (user, auth) -&gt; aggregateUserInfo(user, auth))
 .thenAccept(logger::log);
