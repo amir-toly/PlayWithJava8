@@ -38,49 +38,45 @@ Before switch branch, save you version : `git commit -a -m 'step1-end'`
 
 ### 2. Basic collection enhancement
 
- **Refactorer le code Java 7 en Java 8  \(Sans utiliser stream\(\)\)**
+ **Refactor the Java 7 code into Java 8 code \(without using stream\(\)\)**
 
- * Se connecter à la branche step2 :
-     `git checkout step2`
- * Modifier les méthodes de la classe BasicCollectionOperations : Utiliser les méthodes ajoutées dans l'api collection sans passer par les streams
+ * Checkout the Git branch named step2 : `git checkout step2`
+ * Modify the methods of BasicCollectionOperations class : Use the methods added in the collection API without using Streams
 
- plus d'infos :
+ More information : 
 
  * [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
  * [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
  * [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
 
-
-Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step2-end' `
+Before switch branch, save you version : `git commit -a -m'step2-end' `
 
 -----------------
 
 ### 3. Collection Stream
- **Refactorer le code Java 7 en Java 8**
+ **Refactor the Java 7 code into Java 8 code**
 
- * Se connecter à la branche step3 :
-      `git checkout step3`
- * Refactorer la class UserService.java
+ * Checkout the Git branch named step3 : `git checkout step3`
+ * Refactor the UserService class
 
- plus d'infos :
+ More information :
 
   * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
   * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
   * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
 
 
-Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step3-end' `
+Before switch branch, save you version : `git commit -a -m'step3-end' `
 
 -----------------
 
 ### 4. Others Stream
- **Refactorer le code Java 7 en Java 8**
+ **Refactor the Java 7 code into Java 8 code**
 
- * Se connecter à la branche step4 :
-      `git checkout step4`
- * Refactorer les class FileUtils.java et NumberUtils.java
+ * Checkout the Git branch named step4 : `git checkout step4`
+ * Refactor the FileUtils et NumberUtils classes
 
- plus d'infos :
+ More information :
 
    * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
    * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
