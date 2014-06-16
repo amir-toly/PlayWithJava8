@@ -5,15 +5,15 @@ title: Java 8 is Coming
 
 ### Workshop main goal
 
-This workshop aims to make you programming using the new functionalities of Java 8.
+This workshop aims to make you programming using the Java 8 new functionalities.
 
 The principle is simple: features were coded in Java 7, you have to use the refactoring improvements from Java 8.
-Unit tests pass in java 7, they should always run and pass in Java 8. They exist to assert the iso feature implementation.
+Unit tests pass in java 7, they always should run and pass in Java 8. They allow to assert the iso feature implementation.
 
-Comments with several TODOs will guide you along the exercise.
+Comments with several TODOs will guide you along exercises.
 
 ### Pre-requisites
-* Get the last version of the JDK 8 ([http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
+* Get the JDK 8 last version ([http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
 * Get Git
 * Clone the git repository : `git clone https://github.com/ibeauvais/PlayWithJava8.git`
 * Configure (if needed) your IDE with the Java 8 compatibility
@@ -21,18 +21,18 @@ Comments with several TODOs will guide you along the exercise.
 ### 1. Date and Time
 **Refactor the Java 7 code into Java 8 code**
 
-* Got the the Git branch named 'step1'
-* Modify the methods of DateUtils class : Swith from type **Date** to **LocalDate** (Date without hour) or **LocalDateTime** (Date with hour) based on your needs.
-* Use the methods from **java.time** API to refector this code.
-* Beware of modify the tests code because sometime method signature changed. The test to refactor are marked by a TODO.
+* Get the Git branch named 'step1'
+* Modify methods of DateUtils class : Switch from type **Date** to **LocalDate** (Date without hour) or **LocalDateTime** (Date with hour) based on your needs.
+* Use methods from **java.time** API to refactor this code.
+* Be careful : you'll have to modify some tests because sometime methods signature changed. Tests to refactor are marked by a TODO.
 
-More information : 
+More information :
 
  * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
  * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
  * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
 
-Before switch branch, save you version : `git commit -a -m 'step1-end'`
+Before to switch branch, save your version : `git commit -a -m 'step1-end'`
 
 -----------------
 
@@ -41,15 +41,15 @@ Before switch branch, save you version : `git commit -a -m 'step1-end'`
  **Refactor the Java 7 code into Java 8 code \(without using stream\(\)\)**
 
  * Checkout the Git branch named step2 : `git checkout step2`
- * Modify the methods of BasicCollectionOperations class : Use the methods added in the collection API without using Streams
+ * Modify methods of BasicCollectionOperations class : Use the added methods in the collection API without using Streams
 
- More information : 
+ More information :
 
  * [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
  * [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
  * [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
 
-Before switch branch, save you version : `git commit -a -m'step2-end' `
+Before to switch branch, save you version : `git commit -a -m'step2-end' `
 
 -----------------
 
@@ -66,7 +66,7 @@ Before switch branch, save you version : `git commit -a -m'step2-end' `
   * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
 
 
-Before switch branch, save you version : `git commit -a -m'step3-end' `
+Before to switch branch, save your version : `git commit -a -m'step3-end' `
 
 -----------------
 
@@ -84,4 +84,3 @@ Before switch branch, save you version : `git commit -a -m'step3-end' `
    * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
 
   -----------------
-
