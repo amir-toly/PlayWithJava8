@@ -1,11 +1,13 @@
 package fr.xebia.xke.java8.step1;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
@@ -15,13 +17,11 @@ public class DateUtils {
      * @param date format  dd/MM/yyyy
      * @return
      */
-    public static Date parseDate(String date) {
-        //TODO: Replace with LocalDate and DateTimeFormatter
-
-        try {  //SimpleDateFormat not thread safe must create new formater for each request
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            return format.parse(date);
-        } catch (ParseException e) {
+    public static LocalDate parseDate(String date) {
+        try {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return LocalDate.parse(date, format);
+        } catch (DateTimeException e) {
             throw new IllegalArgumentException("bad format " + date);
         }
     }
@@ -32,80 +32,43 @@ public class DateUtils {
      * @param date format  dd/MM/yyyy HH:mm:ss
      * @return
      */
-    public static Date parseDateTime(String date) {
-        //TODO: Replace with LocalDateTime and DateTimeFormatter
+    public static LocalDateTime parseDateTime(String date) {
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            return format.parse(date);
-        } catch (ParseException e) {
+        	DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            return LocalDateTime.parse(date, format);
+        } catch (DateTimeException e) {
             throw new IllegalArgumentException("bad format " + date);
         }
     }
 
-    public static int age(Date birthday, Date now) {
-        //TODO: Replace with LocalDate and use Period
-        Calendar calBirthday = Calendar.getInstance();
-        calBirthday.setTime(birthday);
-
-        Calendar calNow = Calendar.getInstance();
-        calNow.setTime(now);
-
-        int age = calNow.get(Calendar.YEAR) - calBirthday.get(Calendar.YEAR);
-        if (calNow.get(Calendar.DAY_OF_YEAR) < calBirthday.get(Calendar.DAY_OF_YEAR)) {
-            age--;
-        }
-
-        return age;
+    public static int age(LocalDate birthday, LocalDate now) {
+        return Period.between(birthday, now).getYears();
     }
 
-    public static Date dayDateWithTime(Date dayDate, int hour, int minute, int second) {
-        //TODO: Replace dayDate by LocalDate and result by LocalDateTime
-        Calendar calendarDayDate = Calendar.getInstance();
-        calendarDayDate.setTime(dayDate);
-
-        calendarDayDate.set(Calendar.HOUR, hour);
-        calendarDayDate.set(Calendar.MINUTE, minute);
-        calendarDayDate.set(Calendar.SECOND, second);
-
-        return calendarDayDate.getTime();
+    public static LocalDateTime dayDateWithTime(LocalDate dayDate, int hour, int minute, int second) {
+        return dayDate.atTime(LocalTime.of(hour, minute, second));
     }
 
-    public static Date addDuration(Date date, int minute) {
-        //TODO: Replace By LocalDateTime
-        Calendar calendarDate = Calendar.getInstance();
-        calendarDate.setTime(date);
-
-        calendarDate.add(Calendar.MINUTE, minute);
-
-        return calendarDate.getTime();
+    public static LocalDateTime addDuration(LocalDateTime date, int minute) {
+        return date.plusMinutes((long) minute);
     }
 
-    public static boolean dayAreEquals(Date firstDateWithTime, Date secondDateWithTime) {
-        //TODO: Replace by LocalDateTime
-        Calendar calendarDay1 = Calendar.getInstance();
-        calendarDay1.setTime(firstDateWithTime);
-
-        Calendar calendarDay2 = Calendar.getInstance();
-        calendarDay2.setTime(secondDateWithTime);
-
-        return calendarDay1.get(Calendar.YEAR) == calendarDay2.get(Calendar.YEAR) &&
-                calendarDay1.get(Calendar.DAY_OF_YEAR) == calendarDay2.get(Calendar.DAY_OF_YEAR);
+    public static boolean dayAreEquals(LocalDateTime firstDateWithTime, LocalDateTime secondDateWithTime) {
+        return firstDateWithTime.getDayOfYear() == secondDateWithTime.getDayOfYear();
     }
 
     public static String convertToTimeZone(String dateWithTime, ZoneId timeZoneFrom, ZoneId timeZoneTo) {
         //TODO: parse with LocalDateTime and use ZonedDateTime for conversion
         try {
-            SimpleDateFormat parserFrom = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            parserFrom.setTimeZone(TimeZone.getTimeZone(timeZoneFrom));
+        	DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            LocalDateTime localDateTime = LocalDateTime.parse(dateWithTime, format);
+            
+            ZonedDateTime from = ZonedDateTime.of(localDateTime, timeZoneFrom);
+            ZonedDateTime to = from.withZoneSameInstant(timeZoneTo);
 
-            Date date = parserFrom.parse(dateWithTime);
+            return to.format(format);
 
-            SimpleDateFormat formatWithTimeZone = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            formatWithTimeZone.setTimeZone(TimeZone.getTimeZone(timeZoneTo));
-
-            return formatWithTimeZone.format(date);
-
-        } catch (ParseException e) {
+        } catch (DateTimeException e) {
             throw new IllegalArgumentException("bad format " + dateWithTime);
         }
     }
