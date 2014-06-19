@@ -11,50 +11,22 @@ import java.util.Map;
 public class BasicCollectionOperations {
 
     public static void resetPassword(List<User> users) {
-        //TODO :Refactor with forEach
-
-        for (User user : users) {
-            user.password = null;
-        }
+        users.forEach(user -> user.password = null);
     }
 
     public static void removeExpiredUsers(List<User> users) {
-        //TODO :Refactor with removeIf, use method reference
-
-        List<User> usersToRemove = new ArrayList<>();
-
-        for (User user : users) {
-            if (user.isExpired()) {
-                usersToRemove.add(user);
-            }
-        }
-
-        users.removeAll(usersToRemove);
+        users.removeIf(user -> user.isExpired());
     }
 
     public static void addOneDayToDates(List<LocalDate> localDates) {
-        //TODO :Refactor with replaceAll
-
-        for (int i = 0; i < localDates.size(); i++) {
-            LocalDate localDate = localDates.get(i);
-            LocalDate newDate = localDate.plusDays(1);
-
-            localDates.set(i, newDate);
-        }
+        localDates.replaceAll(localDate -> localDate.plusDays(1));
     }
 
     public static Map<String, Integer> countWord(List<String> words) {
-        //TODO :Refactor Map computation with merge and you can eventually change loop by forEach method
         Map<String, Integer> count = new HashMap<>();
 
-        for (String word : words) {
-            Integer countOfCurrentWord = count.get(word);
-            if (countOfCurrentWord == null) {
-                countOfCurrentWord = 0;
-            }
-
-            count.put(word, countOfCurrentWord + 1);
-        }
+        //TODO: Is the function x -> x + 1 wouldn't have been enough in this case?
+        words.forEach(word -> count.merge(word, 1, (x, y) -> x + 1));
 
         return count;
     }
@@ -69,8 +41,6 @@ public class BasicCollectionOperations {
     }
 
     public static List<Long> fibonacci(int expectedNumberResult) {
-        //TODO: Unit test for fibonacci(45) is very slow. Optimize fibonacciComputation method with fibonacciValues map and computeIfAbsent
-
         List<Long> result = new ArrayList<>(expectedNumberResult);
 
         for (int i = 1; i <= expectedNumberResult; i++) {
@@ -81,11 +51,10 @@ public class BasicCollectionOperations {
     }
 
     private static long fibonacciComputation(int number) {
-        if (number < 2) {
-            return number;
-        } else {
-            return fibonacciComputation(number - 1) + fibonacciComputation(number - 2);
-        }
+    	
+    	fibonacciValues.computeIfAbsent(number, x -> fibonacciComputation(x -1) + fibonacciComputation(x - 2));
+    	
+    	return fibonacciValues.get(number);
     }
 
 }
