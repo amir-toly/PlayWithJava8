@@ -23,40 +23,22 @@ public class UserService {
     }
 
     public long countUserWithRole(Role role) {
-        //TODO: use filter and count
-        long count = 0;
-        for (User user : users) {
-            if (user.getRole() == role) {
-                count++;
-            }
-        }
 
-        return count;
+        return users.stream().filter(u -> u.getRole() == role).count();
     }
 
     public boolean isLoginAlreadyExist(String login) {
-        //TODO: use anyMatch
-        for (User user : users) {
-            if (user.getLogin().equals(login)) {
-                return true;
-            }
-        }
 
-        return false;
+        return users.stream().anyMatch(u -> u.getLogin().equals(login));
     }
 
     public String retrieveFormatedUserAddressByLogin(String login) {
-        //TODO:  Replace user.address type by Optional<Address>, user filter and findFirst. Then Use flatMap with getAddress and map with formatForEnveloppe method
-        for (User user : users) {
-            if (user.getLogin().equals(login)) {
-                if (user.getAddress() != null) {
-                    return user.getAddress().formatForEnveloppe();
-                }
-            }
-        }
-
-        return DEFAULT_FORMATED_ADDRESS;
-    }
+        
+    	return users.stream().filter(u -> u.getLogin().equals(login))
+				.findFirst().flatMap(u -> u.getAddress())
+				.map(a -> a.formatForEnveloppe())
+				.orElse(DEFAULT_FORMATED_ADDRESS);
+	}
 
     /**
      * Return a copy of users list ordered by lastname and firstname
@@ -68,76 +50,28 @@ public class UserService {
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
 
-        Collections.sort(usersOrdered, new UserComparator());
+		Collections.sort(usersOrdered,
+				(u1, u2) -> u1.getLastname().equals(u2.getLastname()) ? u1
+						.getFirstname().compareTo(u2.getFirstname()) : u1
+						.getLastname().compareTo(u2.getLastname()));
 
         return usersOrdered;
     }
 
-    private static class UserComparator implements Comparator<User> {
-
-        public int compare(User userLeft, User userRight) {
-            int lastNameComparaison = userLeft.getLastname().compareTo(userRight.getLastname());
-            if (lastNameComparaison == 0) {
-                return userLeft.getFirstname().compareTo(userRight.getFirstname());
-            } else {
-
-                return lastNameComparaison;
-            }
-        }
-    }
-
     public Map<Role, List<User>> retrieveActiveUserByRole() {
-        //TODO: Use collect with Collectors.groupingBy
-        Map<Role, List<User>> result = new HashMap<>();
 
-        for (User user : users) {
-            if (!user.isExpired()) {
-
-                List<User> currentRoleUsers = result.get(user.getRole());
-                if (currentRoleUsers == null) {
-                    currentRoleUsers = new ArrayList<>();
-                    result.put(user.getRole(), currentRoleUsers);
-                }
-                currentRoleUsers.add(user);
-            }
-        }
-
-        return result;
+        return users.stream().filter(u -> !u.isExpired()).collect(Collectors.groupingBy(u -> u.getRole()));
     }
 
     public Map<String, User> retrieveUserwithRoleByLogin(Role role) {
-        //TODO: Use collect with Collectors.toMap and Function.identity() as value mapper
-        Map<String, User> result = new HashMap<>();
 
-        for (User user : users) {
-            if (user.getRole() == role) {
-                result.put(user.getLogin(), user);
-            }
-        }
-
-        return result;
+    	//TODO(is it possible to use "Class::method" somewhere else?)
+    	return users.stream().filter(u -> u.getRole() == role).collect(Collectors.toMap(User::getLogin, Function.identity()));
     }
 
     public String generateAgeStatistic() {
-        //TODO: use collect with Collectors.summarizingInt
-        int count = 0;
-        int min = Integer.MAX_VALUE;
-        int max = 0;
-        int sum = 0;
-
-        for (User user : users) {
-            int age = user.age();
-            if (age > max) {
-                max = age;
-            }
-            if (age < min) {
-                min = age;
-            }
-            count++;
-            sum += age;
-        }
-        double average = (double) sum / count;
-
-        return String.format("Number of user : %d\nAge min : %d\nAge max : %d\nAge average : %.2f", count, min, max, average);
+        IntSummaryStatistics iss = users.stream().collect(Collectors.summarizingInt(u -> u.age()));
+    	
+        return String.format("Number of user : %d\nAge min : %d\nAge max : %d\nAge average : %.2f", iss.getCount(), iss.getMin(), iss.getMax(), iss.getAverage());
     }
 }

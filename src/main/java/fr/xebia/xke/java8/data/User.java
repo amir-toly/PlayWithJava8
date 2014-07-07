@@ -4,6 +4,7 @@ import fr.xebia.xke.java8.other.CurrentDate;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Optional;
 
 public class User {
 
@@ -21,8 +22,7 @@ public class User {
 
     private Role role;
 
-    // TODO : change to Optional<Address>, update getter and setter, and address default value must be Optional.empty()
-    private Address address;
+    private Optional<Address> address = Optional.empty();
 
     private LocalDate birthday;
 
@@ -57,7 +57,7 @@ public class User {
     }
 
     public User withAddress(Address address) {
-        this.setAddress(address);
+        this.setAddress(Optional.ofNullable(address));
         return this;
     }
 
@@ -110,11 +110,11 @@ public class User {
         this.role = role;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Optional<Address> address) {
         this.address = address;
     }
 
