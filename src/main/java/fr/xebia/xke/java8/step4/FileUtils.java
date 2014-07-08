@@ -4,32 +4,24 @@ import fr.xebia.xke.java8.data.Address;
 import fr.xebia.xke.java8.data.Role;
 import fr.xebia.xke.java8.data.User;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileUtils {
 
     public static List<User> loadUsersFromCsv(Path csvPath) {
-        //TODO: Replace By Files.lines, use static method reference for the skip and stream.map
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvPath.toFile()))) {
-            String line;
-            boolean firstLine = true;
-            List<User> users = new ArrayList<>();
-            while ((line = reader.readLine()) != null) {
-                if (!firstLine) {
-                    users.add(lineToUser(line));
-                }
-                firstLine = false;
-            }
+        try {
+            List<String> lines = Files.lines(csvPath).collect(Collectors.toList());
+            
+			List<User> users = lines.stream()
+					.filter(l -> lines.indexOf(l) != 0).map(l -> lineToUser(l))
+					.collect(Collectors.toList());
 
             return users;
 
@@ -40,38 +32,11 @@ public class FileUtils {
     }
 
     public static Path findRecursivelyFileByName(String path, String fileName) throws IOException {
-        //TODO:replace by Files.walk and remove visitor
         Path rootDictory = Paths.get(path);
 
-        SearchVisitor searchVisitor = new SearchVisitor(fileName);
-
-        Files.walkFileTree(rootDictory, searchVisitor);
-        Path fileFound = searchVisitor.fileFound;
-        if (fileFound == null) {
-            throw new FileNotFoundException();
-        }
-        return fileFound;
-    }
-
-    public static class SearchVisitor extends SimpleFileVisitor<Path> {
-
-        private Path fileFound;
-
-        private String fileNameToSearch;
-
-        public SearchVisitor(String fileNameToSearch) {
-            this.fileNameToSearch = fileNameToSearch;
-        }
-
-        @Override
-        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            if (attrs.isRegularFile() && file.getFileName().toString().equals(fileNameToSearch)) {
-                fileFound = file;
-                return FileVisitResult.TERMINATE;
-            }
-            return FileVisitResult.CONTINUE;
-        }
-
+		return Files.walk(rootDictory)
+				.filter(p -> fileName.equals(p.getFileName().toString()))
+				.findFirst().orElseThrow(FileNotFoundException::new);
     }
 
     private static User lineToUser(String line) {
